@@ -2,6 +2,8 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Dict
+import bz2
+import base64
 
 # header, body, footer separators 
 
@@ -16,7 +18,7 @@ FOOTER_END = "--END FLI FOOTER--"
 
 record_order = [
     "record_id",
-    "flight_id,"
+    "flight_id",
     "tail_id",
     "origin_code",
     "destination_code",
@@ -32,12 +34,12 @@ def get_utc_time():
 def create_header(file_id: str, airline_id: str) -> str:
     utc_time = get_utc_time()
     header = f"""{HEADER_BEGIN}
-file_version
+file_version: 1.0
 file_id: {file_id}
-created_at
-producer_airline
-encoding:
-header_charset
+created_at: {utc_time}
+producer_airline: : {airline_id}
+encoding: base64
+header_charset: UTF-8
 compression: bzip2
 {HEADER_END}"""
     return header
@@ -70,7 +72,11 @@ def create_fli_file(file_path: str, file_id: str, airline_id: str, records: List
 
     #  this combines all parts
     fli_data = "\n".join([header, body, footer])
-    
+
     # write to file
     with open(file_path, "w") as f:
         f.write(fli_data)
+
+def compress_fli_body(body: str):
+    compressed = bz2.compress(body.encode())
+    return base64.b64encode(compressed).decode()
