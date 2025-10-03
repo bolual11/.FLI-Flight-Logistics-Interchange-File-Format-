@@ -1,10 +1,11 @@
 import os
+from typing import Dict, List
 from fli_writer import create_fli_file
 from fli_reader import read_fli_file
 
 # file paths
 output_file = "test.fli"
-example_file = "ex-file.txt"
+example_file = "ex_file.txt"
 file_id= "WS-20251002-001"
 airline_id = "WS"
 
@@ -55,6 +56,14 @@ def parse_body_to_records(body: str):
             records.append(record)
     return records
 
+def create_record_index(records: List[Dict]) -> Dict:
+    # create index for fast lookup
+    return {record['record_id']: record for record in records}
+
+def get_record_by_id(record_id: str, index: Dict) -> Dict:
+    # find record with record_id
+    return index.get(record_id, None)
+
 # create and write fli file
 def test_writer(records):
     create_fli_file(output_file, file_id, airline_id, records)
@@ -68,18 +77,30 @@ def test_reader():
         print("Header:", result["header"])
         print("Body:", result["body"])
         print("Footer:", result["footer"])
+        
+        #create index and verify a record
+        record_index = create_record_index(result["body"])
+        record = get_record_by_id("1", record_index)
+        if record:
+            print("Record found:", record)
+        else:
+            print("Record not found.")
 
     else:
         print("Failed to read FLI file.")
 
 # run tests
 def run_tests():
+    print("Running FLI Writer and Reader Tests...")
     # load example data
     fli_data = load_example_data(example_file)
 
     if fli_data: # create records from body
+        print("Loaded data successfully.")
         records = parse_body_to_records(fli_data["body"])
         # write fli file
         test_writer(records) 
         # read and verify fli file
         test_reader()
+    else:
+        print("Failed to load data.")

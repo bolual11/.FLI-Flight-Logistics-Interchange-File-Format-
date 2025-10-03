@@ -15,10 +15,10 @@
 ---
     record_id: 1
     flight_id: 001
-    tail_id = C-FABC
+    tail_id: C-FABC
     origin_code: YYC
     destination_code: YVR
-    utc:
+    utc: 2025-10-02T15:30:00Z
 ---
 --END FLI BODY
 ---BEGIN FLI FOOTER---

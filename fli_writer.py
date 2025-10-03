@@ -54,10 +54,10 @@ def create_body(records: List[Dict]) -> str:
     return body
 
 # footer
-def create_footer(body: str) -> str:
+def create_footer(body: str, records: List[Dict]) -> str:
     body_hash = hashlib.sha256(body.encode()).hexdigest()
     footer = f"""{FOOTER_BEGIN}
-record_count: len(records)
+record_count: {len(records)}
 body_hash: {body_hash}
 hash_algorithm: sha256
 compression: bzip2
@@ -68,7 +68,7 @@ compression: bzip2
 def create_fli_file(file_path: str, file_id: str, airline_id: str, records: List[Dict]):
     header = create_header(file_id, airline_id)
     body = create_body(records)
-    footer = create_footer(body)
+    footer = create_footer(body, records)
 
     #  this combines all parts
     fli_data = "\n".join([header, body, footer])
