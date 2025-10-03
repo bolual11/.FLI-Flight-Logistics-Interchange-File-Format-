@@ -37,7 +37,7 @@ def create_header(file_id: str, airline_id: str) -> str:
 file_version: 1.0
 file_id: {file_id}
 created_at: {utc_time}
-producer_airline: : {airline_id}
+producer_airline: {airline_id}
 encoding: base64
 header_charset: UTF-8
 compression: bzip2

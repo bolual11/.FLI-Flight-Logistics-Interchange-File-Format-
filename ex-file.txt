@@ -9,7 +9,7 @@
     UTF-8
     Compression: bzip2
 ---
----END FLI HEADER
+---END FLI HEADER---
 
 --BEGIN FLI BODY--
 ---
@@ -21,4 +21,5 @@
     utc:
 ---
 --END FLI BODY
---- END FLI FOOTER---
+---BEGIN FLI FOOTER---
+---END FLI FOOTER---
