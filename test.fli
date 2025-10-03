@@ -1,0 +1,18 @@
+--BEGIN FLI HEADER
+file_version: 1.0
+file_id: WS-20251002-001
+created_at: 2025-10-03T04:30:18Z
+producer_airline: WS
+encoding: base64
+header_charset: UTF-8
+compression: bzip2
+--END FLI HEADER
+--BEGIN FLI BODY--
+1,001,C-FABC,YYC,YVR,2025-10-02T15:30:00Z
+--END FLI BODY--
+--BEGIN FLI FOOTER--
+record_count: 1
+body_hash: e0e732e1f0ceb12233195b037f6a1d14f0af04852e21d0de745b64eda1fb32e1
+hash_algorithm: sha256
+compression: bzip2
+--END FLI FOOTER--

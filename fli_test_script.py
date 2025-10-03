@@ -104,3 +104,6 @@ def run_tests():
         test_reader()
     else:
         print("Failed to load data.")
+        
+if __name__ == "__main__":
+    run_tests()
