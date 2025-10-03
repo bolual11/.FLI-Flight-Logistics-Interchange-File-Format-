@@ -1,0 +1,18 @@
+--BEGIN FLI HEADER--
+file_version: 1.0
+file_id: WS-20251002-001
+created_at: 2025-10-03T10:16:02Z
+producer_airline: WS
+encoding: base64
+header_charset: UTF-8
+compression: bzip2
+--END FLI HEADER--
+--BEGIN FLI BODY--
+QlpoOTFBWSZTWd7CS34ABCbfgAAQQAJ/8DvMn/Cv5Z4AQAInYGYA0TIU/1CTao8kZNNPRPUAACQSoT0piZNPTUwTBqaGmhhgDTQ0aMRkA0AGhgUpQkh+qAZNGQADQemhzRAOG6GTK290d+zwcPKFbYbcb9XXlkSSSSTsmzzjAtKWyeMCKUWuSIBWj0qTa1SSSSSdttLq0MVhm3y124ac/Db2irnUdNG5PSTgTo6MzMwEdPcBokjZEhvUCNCWKSKSKSKTlKraVW0zddzhpMllBGmEc2XiBGhmZpbaW2ltttxYZmSS22ltuvGUcywEZqdBENRDJG3QZFYQdBxWEHsBGQ0d+VjpqWuRttSRtjRJG2MbUhBjOAlwBDEkfgBHTm/bE2NNjbTd25t3kajTnO6tDPjqnJUuAgXmN3EaOB4qg1QBwiAQthhpnnGDtGOcYyaUZTCDoBrAXCAYqoQDojIAwQLirB00Z+MM00v+J3fEnEmlRqTCdgnzJxKuROQnYTyCakwmhNhO0niKtycxOJNibicxO0mG+YZMmMssMmWE/YmEwm5NSYTCeYnImpO8neTyk1J4C7kinChIb2ElvwA=
+--END FLI BODY--
+--BEGIN FLI FOOTER--
+record_count: 20
+body_hash: 4fb207c7d35f0aa4f0eebb21a2e7d3c75c5b0606269c70d942ecacd270277cbb
+hash_algorithm: sha256
+compression: bzip2
+--END FLI FOOTER--

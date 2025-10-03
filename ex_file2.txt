@@ -1,0 +1,87 @@
+--BEGIN FLI HEADER--
+---
+    FLI-Version: 1.0
+    File-ID: FLI-AC-20251003
+    Created-At: 2025-10-03T12:00:00Z
+    Producer-Airline: Air Canada
+    Encoding: base64
+    Header-Charset: UTF-8
+    Compression: bzip2
+---
+---END FLI HEADER---
+
+--BEGIN FLI BODY--
+---
+    record_id: 1
+    flight_id: AC201
+    tail_id: C-AC21
+    origin_code: YYC
+    destination_code: YVR
+    utc: 2025-10-03T13:20:00Z
+---
+    record_id: 2
+    flight_id: AC202
+    tail_id: C-AC22
+    origin_code: YVR
+    destination_code: YEG
+    utc: 2025-10-03T16:45:00Z
+---
+    record_id: 3
+    flight_id: AC203
+    tail_id: C-AC23
+    origin_code: YEG
+    destination_code: YUL
+    utc: 2025-10-04T08:00:00Z
+---
+    record_id: 4
+    flight_id: AC204
+    tail_id: C-AC24
+    origin_code: YUL
+    destination_code: YYZ
+    utc: 2025-10-04T11:35:00Z
+---
+    record_id: 5
+    flight_id: AC205
+    tail_id: C-AC25
+    origin_code: YYZ
+    destination_code: YOW
+    utc: 2025-10-04T15:50:00Z
+---
+    record_id: 6
+    flight_id: AC206
+    tail_id: C-AC26
+    origin_code: YOW
+    destination_code: YHZ
+    utc: 2025-10-05T09:25:00Z
+---
+    record_id: 7
+    flight_id: AC207
+    tail_id: C-AC27
+    origin_code: YHZ
+    destination_code: YYT
+    utc: 2025-10-05T14:10:00Z
+---
+    record_id: 8
+    flight_id: AC208
+    tail_id: C-AC28
+    origin_code: YYT
+    destination_code: YVR
+    utc: 2025-10-06T06:45:00Z
+---
+    record_id: 9
+    flight_id: AC209
+    tail_id: C-AC29
+    origin_code: YVR
+    destination_code: YLW
+    utc: 2025-10-06T12:30:00Z
+---
+    record_id: 10
+    flight_id: AC210
+    tail_id: C-AC30
+    origin_code: YLW
+    destination_code: YYC
+    utc: 2025-10-06T17:15:00Z
+--END FLI BODY---
+
+---BEGIN FLI FOOTER---
+---END FLI FOOTER---
