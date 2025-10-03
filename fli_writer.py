@@ -65,10 +65,10 @@ def create_body(records: List[Dict]) -> str:
 
     # compress then encode with base64
     compressed = bz2.compress(plain)
-    payload_b64 = base64.b64encode(compressed).decode("ascii")
+    encoded_body = base64.b64encode(compressed).decode("ascii")
 
-    # write between markers
-    return f"{BODY_BEGIN}\n{payload_b64}\n{BODY_END}"
+    # wrap between markers
+    return f"{BODY_BEGIN}\n{encoded_body}\n{BODY_END}"
 
 # footer
 # https://docs.python.org/3/library/hashlib.html for hashlib

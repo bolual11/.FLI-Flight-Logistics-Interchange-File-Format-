@@ -10,7 +10,7 @@ file_id= "WS-20251002-001"
 airline_id = "WS"
 
 # load data from example file
-def load_example_data(file_path: str):
+def load_example_file(file_path: str):
     try:
         # read ex file and parse records
         with open(file_path, 'r') as f:
@@ -82,14 +82,23 @@ def test_reader():
         print("Body:", result["body_text"])
         print("Footer:", result["footer"])'''
         
-        #create index and verify a record
+        #create index 
         record_index = create_record_index(result["records"])
-        record = get_record_by_id("1", record_index)
-        if record:
-            print("Record found")
-        else:
-            print("Record not found.")
+        
+        # ask user for a record ID
+        while True:
+            record_id = input("\nEnter a record_id to look up (or 'q' to quit): ").strip()
+            if record_id.lower() == "q":
+                print("Exiting lookup.")
+                break
 
+            record = get_record_by_id(record_id, record_index)
+            if record:
+                print(f"Found record {record_id}:")
+                for k, v in record.items():
+                    print(f"  {k}: {v}")
+            else:
+                print(f"Record {record_id} not found.")
     else:
         print("Failed to read FLI file.")
 
@@ -97,7 +106,7 @@ def test_reader():
 def run_tests():
     print("Running FLI Writer and Reader Tests...")
     # load example data
-    fli_data = load_example_data(example_file)
+    fli_data = load_example_file(example_file)
 
     if fli_data: # create records from body
         print("Loaded data successfully.")
