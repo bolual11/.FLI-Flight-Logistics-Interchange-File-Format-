@@ -85,7 +85,7 @@ def test_reader():
         #create index 
         record_index = create_record_index(result["records"])
         
-        # ask user for a record ID
+        #ask user for a record ID number
         while True:
             record_id = input("\nEnter a record_id to look up (or 'q' to quit): ").strip()
             if record_id.lower() == "q":
