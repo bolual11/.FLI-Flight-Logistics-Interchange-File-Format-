@@ -1,3 +1,6 @@
+# AI Was used to generate ideas and give suggestions for this code.
+# Use will be cited
+
 import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
@@ -57,7 +60,7 @@ def create_body(records: List[Dict]) -> str:
             f"destination_code: {i.get('destination_code','')}",
             f"utc: {i.get('utc','')}",
         ]
-        blocks.append("\n".join(lines))
+        blocks.append("\n".join(lines)) # AI told me to join these with \n
     plain = ("\n---\n".join(blocks) + "\n").encode("utf-8")
 
     # compress then encode with base64

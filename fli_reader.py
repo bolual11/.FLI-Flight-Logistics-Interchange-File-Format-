@@ -1,3 +1,8 @@
+# AI Was used to generate ideas and give suggestions for this code.
+# Use will be cited
+
+# https://cdn.nakamotoinstitute.org/docs/taoup.pdf
+
 import os
 import base64
 import bz2
@@ -17,52 +22,14 @@ def parse_records_from_body(plain_text):
             lines = block.strip().split("\n")
             for line in lines:
                 if ": " in line:
-                    key, value = line.split(": ", 1)
+                    key, value = line.split(": ", 1) # AI suggested using maxsplit=1
                     rec[key.strip()] = value.strip()
             if rec:
                 records.append(rec)
         return records
 
 # function to read and parse FLI file
-"""old function
-    try:
-        with open(file_path, 'r') as file:
-            fli_file = file.read()
-        # extract each section
-        header_start = fli_file.find("--BEGIN FLI HEADER--")
-        header_end = fli_file.find("--END FLI HEADER--") + len("--END FLI HEADER")
-        # slice header
-        header = fli_file[header_start:header_end].strip()
 
-
-        body_start = fli_file.find("--BEGIN FLI BODY--")
-        body_end = fli_file.find("--END FLI BODY--") + len("--END FLI BODY--")
-        # slice body
-        body = fli_file[body_start:body_end].strip()
-
-        # extract footer
-        footer_start = fli_file.find("--BEGIN FLI FOOTER--")
-        footer_end = fli_file.find("--END FLI FOOTER--") + len("--END FLI FOOTER--")
-        # slice footer
-        footer = fli_file[footer_start:footer_end].strip()
-
-        # check if any section is missing
-        if -1 in [header_start, header_end, body_start, body_end, footer_start, footer_end]:
-            raise ValueError("FLI file is missing one or more sections")
-        
-        # return sections as dictionary
-        records = parse_records_from_body(body)
-    
-
-        return {
-            "header": header,
-            "body": body,
-            "footer": footer
-        }
-    except ValueError as e: # specific error handling
-        print(f"Error reading FLI file: {e}")
-        return None
-        """
 # updated function
 def read_fli_file(file_path):
     try:
@@ -83,4 +50,28 @@ def read_fli_file(file_path):
     except Exception as e:
         print("Error reading FLI file:", e)
         return None
-        
+
+if __name__ == "__main__": # AI gave me the layout for this
+    result = read_fli_file("test.fli")
+
+    if result:
+        print("\n--- HEADER ---")
+        print(result["header"])
+
+        print("\n--- DECODED BODY ---")
+        print(result["body_text"])
+
+        print("\n--- FOOTER ---")
+        print(result["footer"])
+
+        # export everything to a text file
+        with open("decoded_fli.txt", "w", encoding="utf-8") as f:
+            f.write("--- HEADER ---\n")
+            f.write(result["header"] + "\n\n")
+            f.write("--- DECODED BODY ---\n")
+            f.write(result["body_text"] + "\n\n")
+            f.write("--- FOOTER ---\n")
+            f.write(result["footer"])
+        print("\nAll decoded content (header, body, footer) saved to 'decoded_fli.txt'")
+    else:
+        print("Could not read test.fli")
