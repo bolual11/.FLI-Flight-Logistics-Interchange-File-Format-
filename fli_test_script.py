@@ -55,14 +55,18 @@ def parse_body_to_records(body: str):
         if record:
             records.append(record)
     return records
-
+# using "str" to avoid crashing if record isn't a string 
 def create_record_index(records: List[Dict]) -> Dict:
     # create index for fast lookup
-    return {record['record_id']: record for record in records}
+    return {
+        str(record.get("record_id")).strip(): record
+        for record in records
+        if "record_id" is not None
+    }
 
 def get_record_by_id(record_id: str, index: Dict) -> Dict:
     # find record with record_id
-    return index.get(record_id, None)
+    return index.get(str(record_id), None)
 
 # create and write fli file
 def test_writer(records):
@@ -75,11 +79,11 @@ def test_reader():
     if result is not None:
         print("FLI file read successfully. Sections:")
         print("Header:", result["header"])
-        print("Body:", result["body"])
+        print("Body:", result["body_text"])
         print("Footer:", result["footer"])
         
         #create index and verify a record
-        record_index = create_record_index(result["body"])
+        record_index = create_record_index(result["records"])
         record = get_record_by_id("1", record_index)
         if record:
             print("Record found:", record)

@@ -7,8 +7,8 @@ import base64
 
 # header, body, footer separators 
 
-HEADER_BEGIN = "--BEGIN FLI HEADER"
-HEADER_END = "--END FLI HEADER"
+HEADER_BEGIN = "--BEGIN FLI HEADER--"
+HEADER_END = "--END FLI HEADER--"
 BODY_BEGIN = "--BEGIN FLI BODY--"
 BODY_END = "--END FLI BODY--"
 FOOTER_BEGIN = "--BEGIN FLI FOOTER--"
@@ -46,23 +46,37 @@ compression: bzip2
 
 # body
 def create_body(records: List[Dict]) -> str:
-    body = BODY_BEGIN + "\n"
-    for record in records:
-        record_line = ",".join(str(record.get(field, "")) for field in record_order)
-        body += record_line + "\n"
-    body += BODY_END
-    return body
+    # build body key:value pairs, records split with "---" separator
+    blocks = []
+    for i in records:
+        lines = [
+            f"record_id: {i.get('record_id','')}",
+            f"flight_id: {i.get('flight_id','')}",
+            f"tail_id: {i.get('tail_id','')}",
+            f"origin_code: {i.get('origin_code','')}",
+            f"destination_code: {i.get('destination_code','')}",
+            f"utc: {i.get('utc','')}",
+        ]
+        blocks.append("\n".join(lines))
+    plain = ("\n---\n".join(blocks) + "\n").encode("utf-8")
+
+    # compress then encode with base64
+    compressed = bz2.compress(plain)
+    payload_b64 = base64.b64encode(compressed).decode("ascii")
+
+    # write between markers
+    return f"{BODY_BEGIN}\n{payload_b64}\n{BODY_END}"
 
 # footer
+# https://docs.python.org/3/library/hashlib.html for hashlib
 def create_footer(body: str, records: List[Dict]) -> str:
-    body_hash = hashlib.sha256(body.encode()).hexdigest()
-    footer = f"""{FOOTER_BEGIN}
+    body_hash = hashlib.sha256(body.encode("utf-8")).hexdigest()
+    return f"""{FOOTER_BEGIN}
 record_count: {len(records)}
 body_hash: {body_hash}
 hash_algorithm: sha256
 compression: bzip2
 {FOOTER_END}"""
-    return footer
 
 # main function to create the FLI file
 def create_fli_file(file_path: str, file_id: str, airline_id: str, records: List[Dict]):
@@ -78,5 +92,8 @@ def create_fli_file(file_path: str, file_id: str, airline_id: str, records: List
         f.write(fli_data)
 
 def compress_fli_body(body: str):
+    # https://docs.python.org/3/library/base64.html for base64
+    # https://docs.python.org/3/library/bz2.html for bz2
+    # first compress then encode with base64
     compressed = bz2.compress(body.encode())
-    return base64.b64encode(compressed).decode()
+    return base64.b64encode(compressed).decode() 
