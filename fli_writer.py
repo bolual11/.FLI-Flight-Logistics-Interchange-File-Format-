@@ -88,7 +88,7 @@ def create_fli_file(file_path: str, file_id: str, airline_id: str, records: List
     footer = create_footer(body, records)
 
     #  this combines all parts
-    fli_data = "\n".join([header, body, footer])
+    fli_data = f"{header}\n{body}\n{footer}"
 
     # write to file
     with open(file_path, "w") as f:

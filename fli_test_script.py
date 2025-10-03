@@ -61,7 +61,7 @@ def create_record_index(records: List[Dict]) -> Dict:
     return {
         str(record.get("record_id")).strip(): record
         for record in records
-        if "record_id" is not None
+        if "record_id" != None
     }
 
 def get_record_by_id(record_id: str, index: Dict) -> Dict:
@@ -76,17 +76,17 @@ def test_writer(records):
 # read and verify fli file
 def test_reader():
     result = read_fli_file(output_file)
-    if result is not None:
-        print("FLI file read successfully. Sections:")
-        print("Header:", result["header"])
+    if result != None:
+        print("FLI file read successfully.")
+        '''print("Header:", result["header"])
         print("Body:", result["body_text"])
-        print("Footer:", result["footer"])
+        print("Footer:", result["footer"])'''
         
         #create index and verify a record
         record_index = create_record_index(result["records"])
         record = get_record_by_id("1", record_index)
         if record:
-            print("Record found:", record)
+            print("Record found")
         else:
             print("Record not found.")
 

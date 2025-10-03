@@ -67,11 +67,11 @@ if __name__ == "__main__": # AI gave me the layout for this
         # export everything to a text file
         with open("decoded_fli.txt", "w", encoding="utf-8") as f:
             f.write("--- HEADER ---\n")
-            f.write(result["header"] + "\n\n")
+            #f.write(result["header"] + "\n\n")
             f.write("--- DECODED BODY ---\n")
-            f.write(result["body_text"] + "\n\n")
+            #f.write(result["body_text"] + "\n\n")
             f.write("--- FOOTER ---\n")
-            f.write(result["footer"])
+            #f.write(result["footer"])
         print("\nAll decoded content (header, body, footer) saved to 'decoded_fli.txt'")
     else:
         print("Could not read test.fli")
